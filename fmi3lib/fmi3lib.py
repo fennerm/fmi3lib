@@ -1,6 +1,6 @@
 """Personal library code for i3 scripting"""
 import i3
-from plumbum import local
+from plumbum import FG
 from plumbum.cmd import bash
 
 
