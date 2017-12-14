@@ -1,14 +1,17 @@
 """Personal library code for i3 scripting"""
 import i3
+from plumbum import local
+from plumbum.cmd import bash
+
 
 def empty_workspace():
     """Return the index of the first empty workspace"""
     workspaces = i3.get_workspaces()
-    for i in range(1, len(workspaces)):
+    nworkspaces = len(workspaces)
+    for i in range(1, nworkspaces):
         if i != workspaces[i]['num'] - 1:
             return i + 1
-    return i + 2
-
+    return nworkspaces + 1
 
 
 def focused_workspace():
@@ -17,3 +20,7 @@ def focused_workspace():
         if workspace['focused']:
             return workspace['num']
     raise OSError("Can't find a focused workspace")
+
+def termite(instance, command):
+    """Start termite in a new i3 window"""
+    bash['-c', 'termite', "--hold", "--name", instance, "-e", command] & FG

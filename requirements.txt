@@ -1,0 +1,4 @@
+setuptools==28.8.0
+plumbum==1.6.4
+i3_py==0.6.4
+pypandoc==1.4
